@@ -63,7 +63,7 @@ case "${BASE_TAG}" in
         BASE_TYPE=debian-base
         ;;
     *ubuntu-base)
-        BASE="ubuntu:22.04"
+        BASE="docker-na.artifactory.swg-devops.com/wcp-lozoseco-team-docker-remote/ubuntu:22.04"
         BASE_TYPE=ubuntu-base
         ;;
 esac
