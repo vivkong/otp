@@ -85,7 +85,7 @@ jobs:
           fi
 
       - name: Detect modified BEAM files
-        if: github.repository == 'erlang/otp'
+        if: github.repository == 'vivkong/otp'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_AUTHOR: ${{ github.event.pull_request.user.login }}
@@ -108,7 +108,7 @@ jobs:
   pack:
     name: Build Erlang/OTP (64-bit) s390x
     runs-on: S390X
-    if: github.repository == 'erlang/otp' || github.event_name != 'schedule'
+    if: github.repository == 'vivkong/otp' || github.event_name != 'schedule'
     outputs:
         changes: ${{ steps.changes.outputs.changes }}
         build-c-code: ${{ steps.c-code-changes.outputs.changes != '[]' || env.FULL_BUILD_AND_CHECK == 'true' }}
@@ -336,7 +336,7 @@ jobs:
   # this is a call to a workflow_call
   pr-vendor-vulnerability-analysis:
     needs: modified-vendor-files
-    if: ${{ needs.modified-vendor-files.outputs.vendor-files == 'true' && github.event_name == 'pull_request' && github.repository == 'erlang/otp'}}
+    if: ${{ needs.modified-vendor-files.outputs.vendor-files == 'true' && github.event_name == 'pull_request' && github.repository == 'vivkong/otp'}}
     permissions:
       actions: read
     name: Vendor Vulnerability Scanning
@@ -416,7 +416,7 @@ jobs:
           name: otp_doc_man
           path: otp_doc_man.tar.gz
       - name: Trigger rebuild of erlang.org/docs/
-        if: github.ref_name == 'master' && github.repository == 'erlang/otp'
+        if: github.ref_name == 'master' && github.repository == 'vivkong/otp'
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_ERLANG_ORG_BUILD }}
         run: |
@@ -753,7 +753,7 @@ jobs:
     needs:
         - sbom
         - pack
-    if: github.repository == 'erlang/otp'
+    if: github.repository == 'vivkong/otp'
     ## Needed to use Github Dependency API
     permissions:
       contents: write
