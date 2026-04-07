@@ -34,7 +34,7 @@ WORKDIR /buildroot/otp/
 
 ENV CFLAGS="-O2 -g -Werror -DwxSTC_DISABLE_MACRO_DEPRECATIONS=1"
 ENV CFLAGS="${CFLAGS} -Wall -Wformat -Wformat=2 -Wno-conversion -Wimplicit-fallthrough \
-    -Werror=format-security -Wtrampolines -fsanitize=signed-integer-overflow"
+    -Werror=format-security -Wtrampolines -fsanitize=signed-integer-overflow -Wno-error=stringop-overflow"
 ENV CXXFLAGS="-Wno-maybe-uninitialized"
 ## OpenSSF recommended CFLAGS, skipped are:
 ##  -Wconversion -Wextra -Wsign-conversion - As we have way too many of these warnings
