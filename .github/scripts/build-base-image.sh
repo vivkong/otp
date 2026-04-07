@@ -63,7 +63,7 @@ case "${BASE_TAG}" in
         BASE_TYPE=debian-base
         ;;
     *ubuntu-base)
-        BASE="docker-na.artifactory.swg-devops.com/wcp-lozoseco-team-docker-remote/ubuntu:22.04"
+        BASE="ubuntu:22.04"
         BASE_TYPE=ubuntu-base
         ;;
 esac
@@ -91,7 +91,7 @@ else
     #DOCKER_BUILDKIT=1 docker build --pull --tag "${BASE_TAG}:latest" \
     DOCKER_BUILDKIT=1 docker build --tag "${BASE_TAG}:latest" \
        ${BASE_CACHE} \
-       --file ".github/dockerfiles/Dockerfile.${BASE_TYPE}" \
+       --file ".github/dockerfiles/Dockerfile.${BASE_TYPE}.s390x" \
        --build-arg MAKEFLAGS=-j6 \
        --build-arg USER=otptest --build-arg GROUP=uucp \
        --build-arg uid="$(id -u)" \
