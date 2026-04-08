@@ -478,8 +478,10 @@ jobs:
           ! sudo apt remove systemd-coredump
           ## Removing systemd-coredump, caused apport to be installed instead, so we disable it
           ! sudo service apport stop
-          #sudo sysctl -w dev.tty.legacy_tiocsti=1
-          sudo bash -c "echo 'core.%p' > /proc/sys/kernel/core_pattern"
+          #error:sysctl: cannot stat /proc/sys/dev/tty/legacy_tiocsti: No such file or directory
+          ##sudo sysctl -w dev.tty.legacy_tiocsti=1
+          #error: bash: line 1: /proc/sys/kernel/core_pattern: Read-only file system
+          #sudo bash -c "echo 'core.%p' > /proc/sys/kernel/core_pattern"
           docker run --ulimit core=-1 --ulimit nofile=5000:5000 --pids-limit 1024 \
             -e CTRUN_TIMEOUT=90 -e SPEC_POSTFIX=gh \
             -e TEST_NEEDS_RELEASE=true -e "RELEASE_ROOT=/buildroot/otp/Erlang ∅⊤℞" \
